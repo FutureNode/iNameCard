@@ -26,8 +26,8 @@ exports.oauth = {
     secret: process.env.TWITTER_OAUTH_SECRET || ''
   },
   facebook: {
-    key: process.env.FACEBOOK_OAUTH_KEY || '',
-    secret: process.env.FACEBOOK_OAUTH_SECRET || ''
+    key: process.env.FACEBOOK_OAUTH_KEY || '559472494127349',
+    secret: process.env.FACEBOOK_OAUTH_SECRET || '6f112f4168ef95013645cb202da7bf61'
   },
   github: {
     key: process.env.GITHUB_OAUTH_KEY || 'd6daa33b7f5997c738a1',
