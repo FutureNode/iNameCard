@@ -5,6 +5,7 @@
 
 var config = require('../config');
 var express = require('express');
+var mongoStore = require('connect-mongo')(express);
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
@@ -31,8 +32,6 @@ app.use(express.session({
 	secret: config.cryptoKey,
 	store: app.sessionStore
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(app.router);
 
 // development only
