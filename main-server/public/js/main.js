@@ -51,7 +51,7 @@ var sendToServer = function(blob) {
         success: function(resp) {
             $('#send').removeAttr('disabled');
             console.log('success');
-            playAudioWithTrack(resp.audio);
+            playAudioWithTrack(resp._id);
         }
     });
 };
