@@ -1,0 +1,16 @@
+body {
+	background-color: #000000;
+	background: url(/img/background.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.navbar-default {
+	background: rgba(0,0,0,.8);
+	border: 0px;
+	box-shadow: 0 0 4px rgba(255,255,255,.2);
+}
+
+.page {
+	background: rgba(0,0,0,.3);
+}
