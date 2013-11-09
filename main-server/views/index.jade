@@ -8,30 +8,34 @@ block neck
 
 block body
   div.jumbotron
-    h1 iShow
-    p.lead
-      | Be the director of your life.
+    blockquote(style="border: 0")
+        h1(style="color: antiquewhite") iShow
+        small(style="color: #999") Be the director of your life.
+    p.lead(style="color: aliceblue")
+      | 每個人都是生活的導演，都值得被紀念，我們的故事精彩上演。
       div
-        a.btn.btn-primary.btn-lg(href='/signup/') Create an Account
-        |  or 
-        a.btn.btn-warning.btn-lg(href='/login/forgot/') Reset Your Password
+        a.btn.btn-primary.btn-lg(href='/signup/') 開始你的創作
+        small(style="color: #666")  或&nbsp;
+        a.btn.btn-info.btn-lg(href='#') 看看別人的
       div.clearfix
   div.row
     div.col-sm-4
       div.panel.panel-default
         div.panel-body
-          h3 About Us
-          p At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-          a.btn.btn-default.btn-block(href='/about/') Learn More
+          h3 拍下你想記錄的每個精彩瞬間
+          img.img-rounded(src="/img/more1.jpg", width="166")
+          //- a.btn.btn-default.btn-block(href='/about/') Learn More
     div.col-sm-4
       div.panel.panel-default
         div.panel-body
-          h3 Sign Up
-          p At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-          a.btn.btn-default.btn-block(href='/signup/') Learn More
+          h3 配上我們精心挑選的情境音樂
+          img.img-rounded(src="/img/more2.jpg", width="280")
+          //- p
+          //- a.btn.btn-default.btn-block(href='/signup/') Learn More
     div.col-sm-4
       div.panel.panel-default
         div.panel-body
-          h3 Contact Us
-          p At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-          a.btn.btn-default.btn-block(href='/contact/') Learn More
+          h3 錄上一段最真實的心中獨白
+          img.img-rounded(src="/img/more3.png", width="190")
+          //- p 錄上一段最真實的心中獨白
+          //- a.btn.btn-default.btn-block(href='/contact/') Learn More

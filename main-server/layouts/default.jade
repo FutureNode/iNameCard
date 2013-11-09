@@ -8,11 +8,11 @@ html
     link(rel='stylesheet', href='/css/base.css?#{cacheBreaker}')
     block neck
   body
-    div.navbar.navbar-default.navbar-fixed-top
+    div.navbar.navbar-inverse.navbar-fixed-top
       div.container
         div.navbar-header
           a.navbar-brand(href='/')
-            img.navbar-logo(src='/media/logo-symbol-64x64.png')
+            //- img.navbar-logo(src='/media/logo-symbol-64x64.png')
             span.navbar-brand-label #{projectName}
           button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
             span.icon-bar
@@ -20,19 +20,20 @@ html
             span.icon-bar
         div.navbar-collapse.my-navbar-collapse.collapse
           ul.nav.navbar-nav
-            li: a(href='/') Home
-            li: a(href='/about/') About
-            li: a(href='/signup/') Sign Up
-            li: a(href='/contact/') Contact
+            li: a(href='/') 首頁
+            li: a(href='/about/') 關於 iShow
+            li: a(href='#') iPhone版下載
+            li: a(href='#') Android版下載
+            li: a(href='/contact/') 聯絡我們
           ul.nav.navbar-nav.navbar-right
             li: a(href='/login/')
               i.icon-user
-              |  Sign In
-    
+              |  登入
+
     div.page
       div.container
         block body
-    
+
     div.footer
       div.container
         span.copyright.pull-right
@@ -41,12 +42,12 @@ html
           li: a(href='/') Home
           li: a(href='/contact/') Contact
         div.clearfix
-    
+
     div.ajax-spinner
       img(src='/media/ajax-pulse.gif')
-    
+
     //if lte IE 9
       script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
     script(src='/layouts/core.min.js?#{cacheBreaker}')
-    
+
     block feet
