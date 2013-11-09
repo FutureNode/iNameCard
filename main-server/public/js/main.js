@@ -32,8 +32,8 @@ var limitSeconds = 5;
 */
 
 function sendRecord( buffer ) {
-    var record = JSON.stringify(buffer);
-    $.post('/record', {record: record}, function() {
+    // var record = JSON.stringify(buffer);
+    $.post('/record', {record: 'test'}, function() {
         console.log('uploaded');
     });
 }
