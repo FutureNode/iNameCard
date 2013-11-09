@@ -23,7 +23,7 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var countdown = null;
-var limitSeconds = 5;
+var limitSeconds = 30;
 
 /* TODO:
 
