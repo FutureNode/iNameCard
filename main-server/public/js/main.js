@@ -24,6 +24,7 @@ var canvasWidth, canvasHeight;
 var recIndex = 0;
 var countdown = null;
 var limitSeconds = 30;
+var audio;
 
 /* TODO:
 
@@ -48,15 +49,19 @@ var sendToServer = function(blob) {
         type: "POST",
         success: function(resp) {
             console.log('success');
-            playAudio(resp._id);
+            playAudioWithTrack(resp._id);
         }
     });
 };
 
-var playAudio = function(trackId) {
-    var audio = new Audio('http://211.78.254.238/track/' + trackId);
+var playAudioWithTrack = function(trackId) {
+    audio = new Audio('http://211.78.254.238/track/' + trackId);
     audio.play();
 };
+
+var playAudio = function() {
+    audio.play();
+}
 
 function saveAudio() {
     audioRecorder.exportWAV( doneEncoding );
@@ -231,5 +236,9 @@ $(function() {
 
     $('#send').on('click', function() {
         sendAudio();
+    });
+
+    $('#playaudio').on('click', function() {
+        playAudio();
     });
 });
