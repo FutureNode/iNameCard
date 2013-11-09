@@ -22,8 +22,8 @@ exports.smtp = {
 };
 exports.oauth = {
   twitter: {
-    key: process.env.TWITTER_OAUTH_KEY || '',
-    secret: process.env.TWITTER_OAUTH_SECRET || ''
+    key: process.env.TWITTER_OAUTH_KEY || 'BUbs3OFqurRwbhhbrk9kA',
+    secret: process.env.TWITTER_OAUTH_SECRET || 'edC4FmUDw5QixGFCdUv0DItWqeoAKkOacHGEzdE'
   },
   facebook: {
     key: process.env.FACEBOOK_OAUTH_KEY || '559472494127349',
