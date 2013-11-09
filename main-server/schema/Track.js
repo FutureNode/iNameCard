@@ -5,6 +5,7 @@ exports = module.exports = function(app, mongoose) {
   var trackSchema = new mongoose.Schema({
     user: { type: String },
     duration: { type: Number },
+    type: { type: String },
     date: { type: Date, default: Date.now }
   });
 
