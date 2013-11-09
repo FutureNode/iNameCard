@@ -8,5 +8,6 @@ exports.index = function(req, res){
 };
 
 exports.addRecord = function(req, res) {
+    res.json(req.body.record);
     console.log(req.session);
 };
