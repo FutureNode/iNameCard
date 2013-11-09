@@ -46,10 +46,16 @@ var sendToServer = function(blob) {
         processData: false,
         contentType: false,
         type: "POST",
-        success: function (result) {
+        success: function(resp) {
             console.log('success');
+            playAudio(resp._id);
         }
     });
+};
+
+var playAudio = function(trackId) {
+    var audio = new Audio('http://211.78.254.238/track/' + trackId);
+    audio.play();
 };
 
 function saveAudio() {

@@ -8,8 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.test = function(req, res) {
-
-    req.app.db.models.Track.find({}, function(tracks) {
+    req.app.db.models.Track.find({}, function(err, tracks) {
         res.json({tracks: tracks});
     });
 };
