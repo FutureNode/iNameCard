@@ -23,6 +23,7 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var countdown = null;
+var limitSeconds = 5;
 
 /* TODO:
 
@@ -30,8 +31,11 @@ var countdown = null;
 - "Monitor input" switch
 */
 
-function playAudio() {
-
+function sendRecord( buffer ) {
+    var record = json.stringify(buffer);
+    $.post('/record', {record: record}, function() {
+        console.log('uploaded');
+    });
 }
 
 function saveAudio() {
@@ -76,6 +80,7 @@ function toggleRecording( e ) {
         e.classList.remove("recording");
         console.log(audioRecorder);
         audioRecorder.getBuffer( drawWave );
+        audioRecorder.getBuffer( sendRecord );
         clearInterval(countdown);
     } else {
         // start recording
@@ -86,7 +91,7 @@ function toggleRecording( e ) {
         var i = 0;
         countdown = setInterval(function() {
             $('#countdown').html(++i);
-            if (i>=30) toggleRecording(e);
+            if (i>=limitSeconds) toggleRecording(e);
         }, 1000);
     }
 }
