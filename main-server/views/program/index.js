@@ -11,8 +11,11 @@ exports.getMetadata = function(req, res) {
 
 	// Getting specific program
 	req.app.db.models.Program.findById(req.params.id).exec(function(err, program) {
+		if (err) {
+			return workflow.emit('exception', err);
+		}
 
-		workflow.outcome = program;
+		workflow.outcome.program = program;
 		return workflow.emit('response');
 	});
 };
@@ -27,7 +30,7 @@ exports.createMetadata = function(req, res) {
 			return workflow.emit('exception', err);
 		}
 	  
-		workflow.outcome = program;
+		workflow.outcome.program = program;
 		return workflow.emit('response');
 	});
 };
