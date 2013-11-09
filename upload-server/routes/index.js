@@ -41,7 +41,7 @@ exports.addRecord = function(req, res) {
                 console.log('exec error: ' + error);
                 res.json(error);
             } else {
-                res.json({status: 'ok'});
+                res.json(track);
             }
         });
     });
