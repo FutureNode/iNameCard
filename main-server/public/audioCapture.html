@@ -11,16 +11,14 @@
         <img id="record" src="img/mic128.png" onclick="toggleRecording(this);">
         <img id="save" src="img/save.svg">
         <button id="send">Send</button>
+        <button id="playaudio">Play</button>
     </div>
     <div>
         <canvas id="analyser" width="512" height="240"></canvas>
         <canvas id="wavedisplay" width="512" height="240"></canvas>
         <audio id="audiodisplay"></audio>
-        <button id="playaudiod">Play</button>
     </div>
-    <audio controls loop autoplay>
-        <source src="http://211.78.254.238/track/test" type="audio/mpeg">
-    </audio>
+
     <div id="countdown"></div>
 
     <script src="js/jquery.min.js"></script>
