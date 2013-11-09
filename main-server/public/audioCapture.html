@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capture Audio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="controls">
+        <img id="record" src="img/mic128.png" onclick="toggleRecording(this);">
+        <img id="save" src="img/save.svg" onclick="saveAudio();">
+    </div>
+    <div>
+        <canvas id="analyser" width="512" height="240"></canvas>
+        <canvas id="wavedisplay" width="512" height="240"></canvas>
+        <audio id="audiodisplay"></audio>
+        <button id="playaudiod">Play</button>
+    </div>
+    <div id="countdown"></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/AudioContextMonkeyPatch.js"></script>
+    <script src="js/recorder.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
