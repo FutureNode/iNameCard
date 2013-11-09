@@ -1,6 +1,17 @@
-Drywall
+iNameCard
 =============
 
+## Server ssh settings
+```
+Host mumu
+     Hostname=211.78.254.238
+     User=root
+     IdentityFile=~/.ssh/mumufuture_dsa
+     PasswordAuthentication=no                                                                                  
+     PubkeyAuthentication=yes
+```
+
+### Drywall settings
 A website and user system for Node.js. What you create with Drywall is more important than Drywall.
 
 [See a bird's eye view.](http://jedireza.github.io/drywall/)
