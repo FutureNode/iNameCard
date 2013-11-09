@@ -92,7 +92,7 @@ function doneEncoding( blob ) {
 
     $.ajax({
         url: "/record",
-        data: buffer,
+        data: fd,
         processData: false,
         contentType: "multipart/form-data",
         type: "POST",
