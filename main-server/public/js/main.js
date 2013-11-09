@@ -31,30 +31,26 @@ var limitSeconds = 30;
 - "Monitor input" switch
 */
 
-function sendRecord( buffer ) {
-    // var record = JSON.stringify(buffer);
-    // $.post('/record', {record: 'test'}, function() {
-    //     console.log('uploaded');
-    // });
-    //
-    //
-    // var fd = new FormData();
-    // fd.append("file", blob);
+var sendAudio = function() {
+    audioRecorder.exportWAV( sendToServer );
+};
 
-    // $.ajax({
-    //     url: "/record",
-    //     data: buffer,
-    //     processData: false,
-    //     contentType: "multipart/form-data",
-    //     type: "POST",
-    //     success: function (result) {
-    //         if (!result.success) {
-    //             alert(result.error);
-    //         }
-    //         callback(null, block.index);
-    //     }
-    // });
-}
+var sendToServer = function(blob) {
+    var fd = new FormData();
+    fd.append('filetype', 'wav');
+    fd.append("file", blob);
+
+    $.ajax({
+        url: "/record",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: "POST",
+        success: function (result) {
+            console.log('success');
+        }
+    });
+};
 
 function saveAudio() {
     audioRecorder.exportWAV( doneEncoding );
@@ -87,23 +83,8 @@ function drawWave( buffers ) {
 }
 
 function doneEncoding( blob ) {
-    var fd = new FormData();
-    fd.append('filetype', 'wav');
-    fd.append("file", blob);
-
-    $.ajax({
-        url: "/record",
-        data: fd,
-        processData: false,
-        contentType: false,
-        type: "POST",
-        success: function (result) {
-            console.log('success');
-        }
-    });
-
-    // Recorder.forceDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
-    // recIndex++;
+    Recorder.forceDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
+    recIndex++;
 }
 
 function toggleRecording( e ) {
@@ -236,3 +217,13 @@ function initAudio() {
 }
 
 window.addEventListener('load', initAudio );
+
+$(function() {
+    $('#save').on('click', function() {
+        saveAudio();
+    });
+
+    $('#send').on('click', function() {
+        sendAudio();
+    });
+});
