@@ -36,7 +36,7 @@ exports.addImage = function(req, res) {
             var newPath = path.join(__dirname, '../../', 'trackbase', track._id + ext);
 
             fs.writeFile(newPath, data, function (err) {
-                req.app.db.models.Program.update({_id: programId}, {image: track._id}, , { upsert: false, multi: true }, function(program) {
+                req.app.db.models.Program.update({_id: programId}, {image: track._id}, { upsert: false, multi: true }, function(program) {
                     res.json(program);
                 });
             });
@@ -76,7 +76,7 @@ exports.addRecord = function(req, res) {
                 console.log('exec error: ' + error);
                 res.json(error);
             } else {
-                req.app.db.models.Program.update({_id: programId}, {audio: track._id}, , { upsert: false, multi: true }, function(program) {
+                req.app.db.models.Program.update({_id: programId}, {audio: track._id}, { upsert: false, multi: true }, function(program) {
                     res.json(program);
                 });
             }
