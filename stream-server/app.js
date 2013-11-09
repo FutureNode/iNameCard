@@ -33,13 +33,20 @@ http.createServer(function(req, res) {
 				return;
 			}
 
+			if (!stats.size) {
+				res.statusCode = 404;
+				res.end('NOT FOUND');
+				return;
+			}
+
 			// Request range of file
-			if (req.header['range']) {
+			if (req.headers['range']) {
 
 				// Getting range and chunk size
 				var range = req.headers.range;
 				var parts = range.replace(/bytes=/, "").split("-");
 				var start = parseInt(parts[0], 10);
+
 				var end = parts[1] ? parseInt(parts[1], 10) : stats.size - 1;
 				var chunkSize = (end - start) + 1;
 
