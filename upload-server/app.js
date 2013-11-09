@@ -24,8 +24,9 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.multipart());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.bodyParser());
+// app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({

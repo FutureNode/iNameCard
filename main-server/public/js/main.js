@@ -33,9 +33,27 @@ var limitSeconds = 5;
 
 function sendRecord( buffer ) {
     // var record = JSON.stringify(buffer);
-    $.post('/record', {record: 'test'}, function() {
-        console.log('uploaded');
-    });
+    // $.post('/record', {record: 'test'}, function() {
+    //     console.log('uploaded');
+    // });
+    //
+    //
+    // var fd = new FormData();
+    // fd.append("file", blob);
+
+    // $.ajax({
+    //     url: "/record",
+    //     data: buffer,
+    //     processData: false,
+    //     contentType: "multipart/form-data",
+    //     type: "POST",
+    //     success: function (result) {
+    //         if (!result.success) {
+    //             alert(result.error);
+    //         }
+    //         callback(null, block.index);
+    //     }
+    // });
 }
 
 function saveAudio() {
@@ -69,8 +87,22 @@ function drawWave( buffers ) {
 }
 
 function doneEncoding( blob ) {
-    Recorder.forceDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
-    recIndex++;
+    var fd = new FormData();
+    fd.append("file", blob);
+
+    $.ajax({
+        url: "/record",
+        data: fd,
+        processData: false,
+        contentType: "multipart/form-data",
+        type: "POST",
+        success: function (result) {
+            console.log('success');
+        }
+    });
+
+    // Recorder.forceDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
+    // recIndex++;
 }
 
 function toggleRecording( e ) {
@@ -79,7 +111,7 @@ function toggleRecording( e ) {
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffer( drawWave );
-        audioRecorder.getBuffer( sendRecord );
+        // audioRecorder.getBuffer( sendRecord );
         clearInterval(countdown);
     } else {
         // start recording

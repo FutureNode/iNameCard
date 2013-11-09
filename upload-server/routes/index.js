@@ -8,6 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.addRecord = function(req, res) {
-    res.json(req.body.record);
-    console.log(req.session);
+    console.log(req.files);
+    res.json({status: 'ok'});
+    // console.log(req.session);
 };
