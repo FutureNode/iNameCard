@@ -4,7 +4,34 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
+};
+
+exports.test = function(req, res) {
+
+    // req.app.db.models.Track.find({}, function(tracks) {
+    //     res.json({tracks: tracks});
+    // });
+
+
+    console.log(req.session);
+
+    // var fieldsToSet = {
+    //     username: req.body.username,
+    //     email: req.body.email,
+    //     password: req.app.db.models.User.encryptPassword(req.body.password),
+    //     search: [
+    //         req.body.username,
+    //         req.body.email
+    //     ]
+    // };
+    // req.app.db.models.User.create(fieldsToSet, function(err, user) {
+    //     if (err) return workflow.emit('exception', err);
+
+    //     workflow.user = user;
+    //     workflow.emit('createAccount');
+    // });
+    res.json({status: 'ok'});
 };
 
 exports.addRecord = function(req, res) {
