@@ -13,25 +13,15 @@ exports.test = function(req, res) {
     //     res.json({tracks: tracks});
     // });
 
+    var fieldsToSet = {
+        user: req.session.passport.user,
+        type: 'audio'
+    }
 
-    console.log(req.session);
-
-    // var fieldsToSet = {
-    //     username: req.body.username,
-    //     email: req.body.email,
-    //     password: req.app.db.models.User.encryptPassword(req.body.password),
-    //     search: [
-    //         req.body.username,
-    //         req.body.email
-    //     ]
-    // };
-    // req.app.db.models.User.create(fieldsToSet, function(err, user) {
-    //     if (err) return workflow.emit('exception', err);
-
-    //     workflow.user = user;
-    //     workflow.emit('createAccount');
-    // });
-    res.json({status: 'ok'});
+    req.app.db.models.Track.create(fieldsToSet, function(err, track) {
+        if (err) return res.json(err);
+        res.json({status: 'ok', data: track});
+    });
 };
 
 exports.addRecord = function(req, res) {
