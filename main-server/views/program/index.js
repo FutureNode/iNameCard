@@ -30,7 +30,7 @@ exports.createMetadata = function(req, res, next) {
 	var workflow = req.app.utility.workflow(req, res);
 
 	// Create a new program
-	req.app.db.models.Program.create({ user: req.user }, function(err, program) {
+	req.app.db.models.Program.create({ user: req.user._id }, function(err, program) {
 		if (err) {
 			return workflow.emit('exception', err);
 		}
