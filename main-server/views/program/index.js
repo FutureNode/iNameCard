@@ -1,9 +1,9 @@
 "use strict";
 
-exports.getMetadata = function(req, res) {
+exports.getMetadata = function(req, res, next) {
 
 	if (!req.params.id) {
-		res.send(404, 'NOT FOUND');
+		next();
 		return;
 	}
 
@@ -20,7 +20,12 @@ exports.getMetadata = function(req, res) {
 	});
 };
 
-exports.createMetadata = function(req, res) {
+exports.createMetadata = function(req, res, next) {
+
+	if (!req.user) {
+		next();
+		return;
+	}
 
 	var workflow = req.app.utility.workflow(req, res);
 
