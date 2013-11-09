@@ -88,13 +88,14 @@ function drawWave( buffers ) {
 
 function doneEncoding( blob ) {
     var fd = new FormData();
+    fd.append('filetype', 'wav');
     fd.append("file", blob);
 
     $.ajax({
         url: "/record",
         data: fd,
         processData: false,
-        contentType: "multipart/form-data",
+        contentType: false,
         type: "POST",
         success: function (result) {
             console.log('success');
