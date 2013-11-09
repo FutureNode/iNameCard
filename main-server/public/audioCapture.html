@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Capture Audio</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div id="controls">
-        <img id="record" src="img/mic128.png" onclick="toggleRecording(this);">
-        <img id="save" src="img/save.svg">
-        <button id="send">Send</button>
-        <button id="playaudio">Play</button>
-    </div>
-    <div>
-        <canvas id="analyser" width="512" height="240"></canvas>
-        <canvas id="wavedisplay" width="512" height="240"></canvas>
-        <audio id="audiodisplay"></audio>
-    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1>iShow Demo</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <canvas id="analyser" width="512" height="240"></canvas>
+                    &nbsp;
+                    <canvas id="wavedisplay" width="512" height="240"></canvas>
+                    <audio id="audiodisplay"></audio>
+                </div>
 
-    <div id="countdown"></div>
+                <div id="countdown"></div>
+            </div>
+
+            <div class="col-md-12">
+                <img id="record" src="img/mic128.png" onclick="toggleRecording(this);">
+                <img id="save" src="img/save.svg">
+                <button class="btn btn-warning" id="send">Send</button>
+                <button class="btn btn-primary" id="playaudio">Play</button>
+            </div>
+            <br />
+
+        </div>
+    </div>
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/AudioContextMonkeyPatch.js"></script>
     <script src="js/recorder.js"></script>
     <script src="js/main.js"></script>

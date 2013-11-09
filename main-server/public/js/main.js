@@ -48,6 +48,7 @@ var sendToServer = function(blob) {
         contentType: false,
         type: "POST",
         success: function(resp) {
+            $('#send').removeAttr('disabled');
             console.log('success');
             playAudioWithTrack(resp._id);
         }
@@ -236,6 +237,7 @@ $(function() {
 
     $('#send').on('click', function() {
         sendAudio();
+        $('#send').attr('disabled', 'disabled');
     });
 
     $('#playaudio').on('click', function() {
