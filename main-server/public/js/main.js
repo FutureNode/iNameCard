@@ -78,7 +78,6 @@ function toggleRecording( e ) {
         // stop recording
         audioRecorder.stop();
         e.classList.remove("recording");
-        console.log(audioRecorder);
         audioRecorder.getBuffer( drawWave );
         audioRecorder.getBuffer( sendRecord );
         clearInterval(countdown);
@@ -91,7 +90,10 @@ function toggleRecording( e ) {
         var i = 0;
         countdown = setInterval(function() {
             $('#countdown').html(++i);
-            if (i>=limitSeconds) toggleRecording(e);
+            if (i>=limitSeconds) {
+                clearInterval(countdown);
+                toggleRecording(e);
+            }
         }, 1000);
     }
 }
