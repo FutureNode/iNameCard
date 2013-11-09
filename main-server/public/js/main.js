@@ -25,6 +25,7 @@ var recIndex = 0;
 var countdown = null;
 var limitSeconds = 30;
 var audio;
+var programId = 0;
 
 /* TODO:
 
@@ -38,8 +39,8 @@ var sendAudio = function() {
 
 var sendToServer = function(blob) {
     var fd = new FormData();
-    fd.append('filetype', 'wav');
     fd.append("file", blob);
+    fd.append("programId", programId);
 
     $.ajax({
         url: "/record",
@@ -50,7 +51,7 @@ var sendToServer = function(blob) {
         success: function(resp) {
             $('#send').removeAttr('disabled');
             console.log('success');
-            playAudioWithTrack(resp._id);
+            playAudioWithTrack(resp.audio);
         }
     });
 };
@@ -242,5 +243,63 @@ $(function() {
 
     $('#playaudio').on('click', function() {
         playAudio();
+    });
+
+    $('#filesToUpload').on('change', function(evt) {
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            var files = evt.target.files;
+
+            var result = '';
+            var file;
+            for (var i = 0; file = files[i]; i++) {
+                // if the file is not an image, continue
+                if (!file.type.match('image.*')) {
+                    continue;
+                }
+
+                reader = new FileReader();
+                reader.onload = (function (tFile) {
+                    return function (evt) {
+                        var div = document.createElement('div');
+                        div.innerHTML = '<img style="width: 90px;" src="' + evt.target.result + '" />';
+                        document.getElementById('filesInfo').appendChild(div);
+                    };
+                }(file));
+                reader.readAsDataURL(file);
+            }
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    });
+
+    $('#imageForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var file = $('#filesToUpload')[0].files[0];
+        if (file && file.type.match('image.*')) {
+            var fd = new FormData(this);
+                // console.log(fd);
+                // fd.append("file", blob);
+            fd.append("programId", programId);
+
+            $.ajax({
+                url: "/image",
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: "POST",
+                success: function(resp) {
+                    // $('#send').removeAttr('disabled');
+                    console.log('success');
+                    // playAudioWithTrack(resp._id);
+                }
+            });
+
+        }
+    });
+
+    $.post('/program', function(resp) {
+        programId = resp.program._id;
+        console.log(programId);
     });
 });

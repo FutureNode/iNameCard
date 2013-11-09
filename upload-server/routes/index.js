@@ -13,10 +13,46 @@ exports.test = function(req, res) {
     });
 };
 
-exports.addRecord = function(req, res) {
+exports.addImage = function(req, res) {
+
+    var user = req.session.passport ? req.session.passport.user : '';
+    var programId = req.body.programId;
+    if (!programId) res.json({error: 'program Id not found'});
 
     var fieldsToSet = {
-        user: req.session.passport.user,
+        user: user,
+        type: 'image'
+    };
+
+    // create image
+    req.app.db.models.Track.create(fieldsToSet, function(err, track) {
+        if (err) return res.json(err);
+
+        var fs = require('fs');
+        var path = require('path');
+        var ext = path.extname(req.files.file.path);
+
+        fs.readFile(req.files.file.path, function (err, data) {
+            var newPath = path.join(__dirname, '../../', 'trackbase', track._id + ext);
+
+            fs.writeFile(newPath, data, function (err) {
+                req.app.db.models.Program.update({_id: programId}, {image: track._id}, , { upsert: false, multi: true }, function(program) {
+                    res.json(program);
+                });
+            });
+        });
+    });
+};
+
+exports.addRecord = function(req, res) {
+
+    var user = req.session.passport ? req.session.passport.user : '';
+    var programId = req.body.programId;
+    if (!programId) res.json({error: 'program Id not found'});
+
+
+    var fieldsToSet = {
+        user: user,
         type: 'audio'
     };
 
@@ -40,7 +76,9 @@ exports.addRecord = function(req, res) {
                 console.log('exec error: ' + error);
                 res.json(error);
             } else {
-                res.json(track);
+                req.app.db.models.Program.update({_id: programId}, {audio: track._id}, , { upsert: false, multi: true }, function(program) {
+                    res.json(program);
+                });
             }
         });
     });
