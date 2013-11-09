@@ -156,7 +156,9 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/facebook/callback/', require('./views/account/settings/index').connectFacebook);
   app.get('/account/settings/facebook/disconnect/', require('./views/account/settings/index').disconnectFacebook);
 
+  // Program
   app.get('/program/:id', require('./views/program/index').getMetadata);
+  app.post('/program', require('./views/program/index').createMetadata);
   
   //route not found
   app.all('*', require('./views/http/index').http404);

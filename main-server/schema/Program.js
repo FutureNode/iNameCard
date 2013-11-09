@@ -4,10 +4,10 @@ exports = module.exports = function(app, mongoose) {
 
   var programSchema = new mongoose.Schema({
     user: { type: String },
-	audio: [],
-    image: [],
-    music: [],
-    video: [],
+	audio: { type: String, default: '' },
+    image: { type: String, default: '' },
+    music: { type: String, default: '' },
+    video: { type: String, default: '' },
     date: { type: Date, default: Date.now }
   });
 
