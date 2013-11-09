@@ -19,7 +19,7 @@ exports.addRecord = function(req, res) {
     var srcAudio = req.files.file.path;
     var targetAudio = path.join(__dirname, '../../', 'trackbase', 'test.mp3');
 
-    child = exec('ffmpeg -i ' + srcAudio + ' -f mp3 ' + targetAudio, function (error, stdout, stderr) {
+    child = exec('lame ' + srcAudio + ' ' + targetAudio, function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
         if (error !== null) {
