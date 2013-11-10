@@ -325,7 +325,7 @@ $(function() {
             $('.musicBtn').removeClass('btn-info');
             $(this).addClass('btn-info');
 
-            $.post('/music', { musicId: $(this).data('id') }, function(resp) {
+            $.post('/music', { programId: programId, musicId: $(this).data('id') }, function(resp) {
                 console.log(resp);
             });
         });
