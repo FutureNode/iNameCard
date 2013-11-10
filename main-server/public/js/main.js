@@ -26,6 +26,7 @@ var countdown = null;
 var limitSeconds = 30;
 var audio;
 var programId = 0;
+var musicList = {};
 
 /* TODO:
 
@@ -310,5 +311,10 @@ $(function() {
     $.post('/program', function(resp) {
         programId = resp.program._id;
         console.log("program prepared");
+    });
+
+    $.get('/json/music.json', function(resp) {
+        musicList = resp;
+        console.log(musicList);
     });
 });
