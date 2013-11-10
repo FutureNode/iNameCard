@@ -328,6 +328,10 @@ $(function() {
             $.post('/music', { programId: programId, musicId: $(this).data('id') }, function(resp) {
                 console.log(resp);
             });
+
+            $('#musicSource').attr('src', 'http://211.78.254.238/track/527e46fa7763e7fd2d000007');
+            $('#musicPreview')[0].load();
+            $('#musicPreview')[0].play();
         });
     });
 
