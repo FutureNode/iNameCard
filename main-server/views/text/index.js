@@ -19,7 +19,7 @@ exports.create = function(req, res, next) {
         fs.readFile(req.files.file.path, function (err, data) {
             var newPath = path.join(__dirname, '../../', 'trackbase', track._id + ext);
 
-            fs.writeFile(newPath, "WEBVTT\n\n00:00.000 --> 00:30.000\n\n" + text, function (err) {
+            fs.writeFile(newPath, "WEBVTT\n\n00:00.000 --> 00:30.000\n" + text, function (err) {
                 req.app.db.models.Program.update({_id: programId}, {text: track._id}, { upsert: false, multi: true }, function(err, numAffected) {
                     res.json(track);
                 });
