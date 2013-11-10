@@ -22,11 +22,6 @@ exports.getMetadata = function(req, res, next) {
 
 exports.createMetadata = function(req, res, next) {
 
-	if (!req.user) {
-		next();
-		return;
-	}
-
 	var workflow = req.app.utility.workflow(req, res);
 
 	// Create a new program
@@ -34,11 +29,12 @@ exports.createMetadata = function(req, res, next) {
 		if (err) {
 			return workflow.emit('exception', err);
 		}
-	  
+
 		workflow.outcome.program = program;
 		return workflow.emit('response');
 	});
 };
+
 
 exports.listMetadata = function(req, res, next) {
 
@@ -53,4 +49,10 @@ exports.listMetadata = function(req, res, next) {
 		workflow.outcome.programs = programs;
 		return workflow.emit('response');
 	});
+};
+
+// program - create new one page
+exports.create = function(req, res, next) {
+    res.render('program/index');
+
 };
