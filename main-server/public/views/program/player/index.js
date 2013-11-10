@@ -29,8 +29,14 @@ var Track = function(id, type) {
 			self.$control[0].volume = 0.85;
 		else if (type == 'audio')
 			self.$control[0].volume = 0.7;
-		else if (type == 'video')
+		else if (type == 'video') {
 			self.$control[0].volume = 0.5;
+			self.$control.css({
+				'width': 'auto',
+				'height': '500px',
+				'max-height': '500px'
+			});
+		}
 
 		break;
 
@@ -41,8 +47,9 @@ var Track = function(id, type) {
 		});
 
 		self.$control.css({
-			'width': '50%',
-			'height': 'auto'
+			'width': 'auto',
+			'height': '500px',
+			'max-height': '500px'
 		});
 		break;
 	case 'text':
