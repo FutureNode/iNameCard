@@ -168,6 +168,7 @@ exports = module.exports = function(app, passport) {
   app.get('/new', require('./views/program/index').create);
 
   app.post('/music', require('./views/music/index').create);
+  app.post('/text', require('./views/text/index').create);
 
   //route not found
   app.all('*', require('./views/http/index').http404);
