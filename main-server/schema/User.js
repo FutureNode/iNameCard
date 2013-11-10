@@ -21,23 +21,23 @@ exports = module.exports = function(app, mongoose) {
     if (role === "admin" && this.roles.admin) {
       return true;
     }
-    
+
     if (role === "account" && this.roles.account) {
       return true;
     }
-    
+
     return false;
   };
   userSchema.methods.defaultReturnUrl = function() {
     var returnUrl = '/';
     if (this.canPlayRoleOf('account')) {
-      returnUrl = '/account/';
+      returnUrl = '/';
     }
-    
+
     if (this.canPlayRoleOf('admin')) {
       returnUrl = '/admin/';
     }
-    
+
     return returnUrl;
   };
   userSchema.statics.encryptPassword = function(password) {

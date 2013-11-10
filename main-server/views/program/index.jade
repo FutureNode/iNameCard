@@ -1,0 +1,52 @@
+extends ../../layouts/default
+
+block head
+  title #{projectName} - Be the director of your life.
+
+block neck
+  //- link(rel='stylesheet', href='/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/css/style.css')
+
+block feet
+  script(src='/js/jquery.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/AudioContextMonkeyPatch.js')
+  script(src='/js/recorder.js')
+  script(src='/js/main.js')
+
+block body
+  .row
+    .col-sm-6
+      .page-header
+        h1 拍一張照片
+      .row
+        .col-sm-12
+          form#imageForm(enctype='multipart/form-data', method='post', action='/image')
+          input#filesToUpload(type='file', name='file')
+          output#filesInfo
+          input.btn.btn-default(type='submit', value='Upload')
+  .row
+    .col-sm-6
+      .page-header
+        h1 選擇你的風格
+      .row
+        .col-sm-12
+
+  .row
+    .col-sm-12
+      .page-header
+        h1 錄一段內心話
+      .row
+        .col-sm-6
+          canvas#analyser(width='512', height='240')
+        .col-sm-6
+          canvas#wavedisplay(width='512', height='240')
+
+      .row
+        .col-sm-12
+          #countdown
+          img#record(src='/img/mic128.png', onclick='toggleRecording(this);')
+          //- img#save(src='/img/save.svg')
+          button#send.btn.btn-warning Send
+          button#playaudio.btn.btn-primary Play
+          //- audio#audiodisplay

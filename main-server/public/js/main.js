@@ -38,6 +38,12 @@ var sendAudio = function() {
 };
 
 var sendToServer = function(blob) {
+    if (blob.size < 100) {
+        alert('record audio before send');
+        $('#send').removeAttr('disabled');
+        return;
+    }
+
     var fd = new FormData();
     fd.append("file", blob);
     fd.append("programId", programId);
@@ -62,7 +68,8 @@ var playAudioWithTrack = function(trackId) {
 };
 
 var playAudio = function() {
-    audio.play();
+    if (audio) audio.play();
+    else alert('upload audio before play');
 }
 
 function saveAudio() {
@@ -106,7 +113,7 @@ function toggleRecording( e ) {
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffer( drawWave );
-        // audioRecorder.getBuffer( sendRecord );
+
         clearInterval(countdown);
     } else {
         // start recording
@@ -237,8 +244,10 @@ $(function() {
     });
 
     $('#send').on('click', function() {
-        sendAudio();
-        $('#send').attr('disabled', 'disabled');
+        if (audioRecorder) {
+            sendAudio();
+            $('#send').attr('disabled', 'disabled');
+        }
     });
 
     $('#playaudio').on('click', function() {
@@ -300,6 +309,6 @@ $(function() {
 
     $.post('/program', function(resp) {
         programId = resp.program._id;
-        console.log(programId);
+        console.log("program prepared");
     });
 });
