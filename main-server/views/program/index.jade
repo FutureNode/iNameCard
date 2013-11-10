@@ -3,8 +3,8 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     title Capture Audio
-    link(rel='stylesheet', href='css/bootstrap.min.css')
-    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
   body
     .container
       .page-header
@@ -24,13 +24,13 @@ html(lang='en')
             audio#audiodisplay
           #countdown
         .col-md-12
-          img#record(src='img/mic128.png', onclick='toggleRecording(this);')
-          img#save(src='img/save.svg')
+          img#record(src='/img/mic128.png', onclick='toggleRecording(this);')
+          img#save(src='/img/save.svg')
           button#send.btn.btn-warning Send
           button#playaudio.btn.btn-primary Play
         br
-    script(src='js/jquery.min.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/AudioContextMonkeyPatch.js')
-    script(src='js/recorder.js')
-    script(src='js/main.js')
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/AudioContextMonkeyPatch.js')
+    script(src='/js/recorder.js')
+    script(src='/js/main.js')
