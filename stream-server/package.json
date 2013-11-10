@@ -1,0 +1,12 @@
+{
+  "name": "iNameCard-stream-server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "~0.2.9",
+    "mime": "~1.2.11"
+  }
+}

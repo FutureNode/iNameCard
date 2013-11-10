@@ -1,10 +1,31 @@
 body {
-	background-color: #000000;
 	background: url(/img/background.jpg);
-	background-size: cover;
+	background-color: #000000;
+	-moz-background-size: 100% auto;
+	-webkit-background-size: 100% auto;
+	-o-background-size: 100% auto;
+	background-size: 100% auto;
 	background-repeat: no-repeat;
+	color: #bbb;
+}
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+	color: #555;
+}
+
+.page-header {
+	border-bottom: 1px solid #333;
 }
 
 .page {
 	background: rgba(0,0,0,.3);
+}
+
+.panel {
+	background: rgba(255,255,255,.2);
+	color: #ddc;
+}
+
+.panel h3 {
+	text-shadow: 0 0 4px rgba(0,0,0,.6);
 }

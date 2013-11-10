@@ -6,6 +6,9 @@ block head
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
 
+block feet
+  script(src='/views/index.js?#{cacheBreaker}')
+
 block body
   div.jumbotron
     blockquote(style="border: 0")
@@ -39,3 +42,10 @@ block body
           img.img-rounded(src="/img/more3.png", width="190")
           //- p 錄上一段最真實的心中獨白
           //- a.btn.btn-default.btn-block(href='/contact/') Learn More
+
+  div.page-header
+    h1
+      | 熱門創作 
+      small 最受歡迎的作品都在這裡
+
+  div.row#album
