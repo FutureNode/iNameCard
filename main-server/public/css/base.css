@@ -13,6 +13,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	color: #555;
 }
 
+blockquote small {
+	text-shadow: 0 1 7px rgba(0,0,0,.8);
+}
+
 .page-header {
 	border-bottom: 1px solid #333;
 }
