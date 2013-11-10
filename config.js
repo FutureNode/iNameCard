@@ -4,8 +4,8 @@ exports.port = process.env.PORT || 8000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost/inamecard'
 };
-exports.companyName = 'iShow, Inc.';
-exports.projectName = 'iShow';
+exports.companyName = 'FutureNode, Inc.';
+exports.projectName = 'LifeShow';
 exports.systemEmail = 'inamecard@model.com.tw';
 exports.cryptoKey = '1qaz#@EDEdfvG&859876';
 exports.smtp = {
