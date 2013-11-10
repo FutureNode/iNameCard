@@ -39,3 +39,18 @@ exports.createMetadata = function(req, res, next) {
 		return workflow.emit('response');
 	});
 };
+
+exports.listMetadata = function(req, res, next) {
+
+	var workflow = req.app.utility.workflow(req, res);
+
+	// Getting specific program
+	req.app.db.models.Program.find().exec(function(err, programs) {
+		if (err) {
+			return workflow.emit('exception', err);
+		}
+
+		workflow.outcome.programs = programs;
+		return workflow.emit('response');
+	});
+};

@@ -158,6 +158,7 @@ exports = module.exports = function(app, passport) {
 
   // Program
   app.get('/program/:id', require('./views/program/index').getMetadata);
+  app.get('/program', require('./views/program/index').listMetadata);
   app.post('/program', require('./views/program/index').createMetadata);
   
   //route not found
