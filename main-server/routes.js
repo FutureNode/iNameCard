@@ -160,9 +160,9 @@ exports = module.exports = function(app, passport) {
   // Program
   app.get('/program/:id', require('./views/program/index').getMetadata);
   app.get('/program', require('./views/program/index').listMetadata);
-
   app.post('/program', ensureAuthenticated);
   app.post('/program', require('./views/program/index').createMetadata);
+  app.get('/play/:id', require('./views/program/player/index').play);
 
   app.get('/new', ensureAuthenticated);
   app.get('/new', require('./views/program/index').create);

@@ -18,8 +18,6 @@ function appendItem(program) {
 }
 
 $.get('/program', function(data) {
-	console.log(programs);
-
 	var programs = data.programs;
 
 	for (var index in programs) {

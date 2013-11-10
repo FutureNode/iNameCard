@@ -46,6 +46,7 @@ http.createServer(function(req, res) {
 		function(next) {
 			if (!trackPath) {
 				next(false);
+				return;
 			}
 
 			next();

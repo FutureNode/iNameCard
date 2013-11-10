@@ -1,0 +1,22 @@
+extends ../../../layouts/default
+
+block head
+  title LifeShow Playing
+
+block neck
+  link(rel='stylesheet', href='/views/program/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/program/player/index.js?#{cacheBreaker}')
+
+block body
+  input#programID(type='hidden', value='#{programID}')
+  div.row
+    div.col-sm-6.special
+      br
+      br
+      br
+      br
+      br
+      br
+      div#track_wareroom
