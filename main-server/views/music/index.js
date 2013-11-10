@@ -5,7 +5,6 @@ exports.create = function(req, res, next) {
     if (!programId || !musicId) return res.json({error: 'program Id not found'});
 
     req.app.db.models.Program.update({_id: programId}, {music: musicId}, { upsert: false, multi: true }, function(err, numAffected) {
-        console.log(ok);
         res.json({status: 'ok'});
     });
 };
