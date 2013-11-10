@@ -314,11 +314,11 @@ $(function() {
     });
 
     $.get('/json/music.json', function(resp) {
-        musicList = resp;
-        console.log(musicList);
+        musicList = resp.data;
+
         var html = '';
         for (i in musicList) {
-            html += '<button class="btn btn-default musicBtn" type="button" data-id="' + musicList[i].life + '"> ' + i + '</button>';
+            html += '<button class="btn btn-default musicBtn" type="button" data-id="' + musicList[i].id + '"> ' + musicList[i].name + '</button>';
         }
         $('#musicList').html(html);
         $('.musicBtn').on('click', function() {
