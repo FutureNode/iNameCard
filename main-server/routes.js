@@ -2,7 +2,6 @@
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log(req.user);
     return next();
   }
   res.set('X-Auth-Required', 'true');

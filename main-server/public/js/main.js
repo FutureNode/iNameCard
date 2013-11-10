@@ -316,5 +316,19 @@ $(function() {
     $.get('/json/music.json', function(resp) {
         musicList = resp;
         console.log(musicList);
+        var html = '';
+        for (i in musicList) {
+            html += '<button class="btn btn-default musicBtn" type="button" data-id="' + musicList[i].life + '"> ' + i + '</button>';
+        }
+        $('#musicList').html(html);
+        $('.musicBtn').on('click', function() {
+            $('.musicBtn').removeClass('btn-info');
+            $(this).addClass('btn-info');
+
+            $.post('/music', { musicId: $(this).data('id') }, function(resp) {
+                console.log(resp);
+            });
+        });
     });
+
 });
