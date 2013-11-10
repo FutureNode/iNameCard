@@ -1,14 +1,19 @@
 function appendItem(program) {
 
-	if (!program.image)
+	if (!program.image && !program.video)
 		return;
 
 	var $item = $('<div>').addClass('col-md-3');
 	var $thumbnail = $('<div>').addClass('thumbnail');
 	var $link = $('<a>').attr('href', '/play/' + program._id);
 	var $img = $('<img>')
-		.addClass('img-rounded col-md-12')
-		.attr('src', '/track/' + program.image);
+		.addClass('img-rounded col-md-12');
+
+	if (program.video)
+		$img.attr('src', '/img/video-icon.png');
+	else
+		$img.attr('src', '/track/' + program.image);
+
 	var $caption = $('<div>').addClass('caption');
 
 	$link.append($img);

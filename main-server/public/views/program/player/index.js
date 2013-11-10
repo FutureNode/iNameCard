@@ -39,6 +39,39 @@ var Track = function(id, type) {
 		self.$control.on('load', function() {
 			self.ready = true;
 		});
+
+		self.$control.css({
+			'width': '50%',
+			'height': 'auto'
+		});
+		break;
+	case 'text':
+		self.$control = self.$source = $('<div>').hide();
+		$.get('/track/' + id, function(vtt) {
+
+			var lines = vtt.split('\n');
+			var subtitles = [];
+			var foundText = false;
+			for (var index in lines) {
+				if (foundText) {
+					subtitles.push(lines[index]);
+					continue;
+				}
+
+				if (lines[index].search('-->') > -1) {
+					foundText = true;
+				}
+			}
+
+			// Create DOMs
+			self.$subtitles = [];
+			for (var index in subtitles) {
+				var $subtitle = self.$subtitles[index] = $('<div>').text(subtitles[index]);
+				self.$control.append($subtitle);
+			}
+
+			self.ready = true;
+		});
 		break;
 	}
 };
@@ -59,6 +92,7 @@ Track.prototype.play = function() {
 		self.$control[0].play();
 		break;
 
+	case 'text':
 	case 'image':
 		self.$control.fadeIn(2000);
 		break;
@@ -161,6 +195,12 @@ $.get('/program/' + programID, function(data) {
 
 	if (program.audio) {
 		var track = trackManager.addTrack(program.audio, 'audio');
+
+		$('#track_wareroom').append(track.$control);
+	}
+
+	if (program.text) {
+		var track = trackManager.addTrack(program.text, 'text');
 
 		$('#track_wareroom').append(track.$control);
 	}

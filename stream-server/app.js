@@ -19,7 +19,9 @@ http.createServer(function(req, res) {
 	var list = [
 		path.join(trackbasePath, trackID + '.jpg'),
 		path.join(trackbasePath, trackID + '.png'),
-		path.join(trackbasePath, trackID + '.mp3')
+		path.join(trackbasePath, trackID + '.mp3'),
+		path.join(trackbasePath, trackID + '.mp4'),
+		path.join(trackbasePath, trackID + '.vtt')
 	];
 
 	var trackPath = null
