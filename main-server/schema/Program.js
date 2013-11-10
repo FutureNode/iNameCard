@@ -7,6 +7,7 @@ exports = module.exports = function(app, mongoose) {
 	audio: { type: String, default: '' },
     image: { type: String, default: '' },
     music: { type: String, default: '' },
+    text: { type: String, default: '' },
     video: { type: String, default: '' },
     date: { type: Date, default: Date.now }
   });
