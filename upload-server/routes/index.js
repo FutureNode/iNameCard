@@ -54,7 +54,6 @@ exports.addRecord = function(req, res) {
     var programId = req.body.programId;
     if (!programId) res.json({error: 'program Id not found'});
 
-
     var fieldsToSet = {
         user: user,
         type: 'audio'
@@ -85,5 +84,16 @@ exports.addRecord = function(req, res) {
                 });
             }
         });
+    });
+};
+
+exports.addMusic = function(req, res) {
+    // var user = req.session.passport ? req.session.passport.user : '';
+    var programId = req.body.programId;
+    var musicId = req.body.musicId;
+    if (!programId || !musicId) res.json({error: 'program Id not found'});
+
+    req.app.db.models.Program.update({_id: programId}, {music: musicId}, { upsert: false, multi: true }, function(err, numAffected) {
+        res.json({status: 'ok'});
     });
 };

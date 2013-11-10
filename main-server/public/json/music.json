@@ -1,8 +1,23 @@
 {
     "happy": {
-        "fred": "527e46fa7763e7fd2d000007"
+        "life": "527e46fa7763e7fd2d000007"
     },
     "sad": {
-
+        "life": "527e46fa7763e7fd2d000007"
+    },
+    "laugh": {
+        "life": "527e46fa7763e7fd2d000007"
+    },
+    "silent": {
+        "life": "527e46fa7763e7fd2d000007"
+    },
+    "shit": {
+        "life": "527e46fa7763e7fd2d000007"
+    },
+    "bad": {
+        "life": "527e46fa7763e7fd2d000007"
+    },
+    "flower": {
+        "life": "527e46fa7763e7fd2d000007"
     }
 }
