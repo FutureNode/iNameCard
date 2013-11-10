@@ -54,5 +54,4 @@ exports.listMetadata = function(req, res, next) {
 // program - create new one page
 exports.create = function(req, res, next) {
     res.render('program/index');
-
 };
