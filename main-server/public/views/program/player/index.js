@@ -8,16 +8,28 @@ var Track = function(id, type) {
 	self.ready = false;
 
 	switch(type) {
+	case 'video':
 	case 'music':
 	case 'audio':
-		self.$control = $('<audio>').attr({
-		//	'controls': true
-		});
+		if (type == 'video')  {
+			self.$control = $('<video>').attr({
+				'controls': true
+			});
+		} else {
+			self.$control = $('<audio>').attr({
+			//	'controls': true
+			});
+		}
 		self.$source = $('<source>');
 
 		self.$control.append(self.$source);
 
+		// Initializing volume
 		if (type == 'music')
+			self.$control[0].volume = 0.85;
+		else if (type == 'audio')
+			self.$control[0].volume = 0.7;
+		else if (type == 'video')
 			self.$control[0].volume = 0.5;
 
 		break;
@@ -43,6 +55,7 @@ Track.prototype.play = function() {
 	switch(self.type) {
 	case 'music':
 	case 'audio':
+	case 'video':
 		self.$control[0].play();
 		break;
 
@@ -58,6 +71,7 @@ Track.prototype.pause = function() {
 	switch(self.type) {
 	case 'music':
 	case 'audio':
+	case 'video':
 		self.$control[0].pause();
 	}
 };
@@ -74,6 +88,7 @@ Track.prototype.isReady = function() {
 	switch(self.type) {
 	case 'music':
 	case 'audio':
+	case 'video':
 		if (self.$control[0].readyState == 4)
 			self.ready = true;
 	};
@@ -127,6 +142,17 @@ var trackManager = new TrackManager();
 $.get('/program/' + programID, function(data) {
 	var program = data.program;
 
+	if (program.video) {
+		var track = trackManager.addTrack(program.video, 'video');
+
+		$('#track_wareroom').append(track.$control);
+
+	} else if (program.image) {
+		var track = trackManager.addTrack(program.image, 'image');
+
+		$('#track_wareroom').append(track.$control);
+	}
+
 	if (program.music) {
 		var track = trackManager.addTrack(program.music, 'music');
 
@@ -135,12 +161,6 @@ $.get('/program/' + programID, function(data) {
 
 	if (program.audio) {
 		var track = trackManager.addTrack(program.audio, 'audio');
-
-		$('#track_wareroom').append(track.$control);
-	}
-
-	if (program.image) {
-		var track = trackManager.addTrack(program.image, 'image');
 
 		$('#track_wareroom').append(track.$control);
 	}

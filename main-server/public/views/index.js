@@ -5,12 +5,14 @@ function appendItem(program) {
 
 	var $item = $('<div>').addClass('col-md-3');
 	var $thumbnail = $('<div>').addClass('thumbnail');
+	var $link = $('<a>').attr('href', '/play/' + program._id);
 	var $img = $('<img>')
-		.addClass('img-rounded')
+		.addClass('img-rounded col-md-12')
 		.attr('src', '/track/' + program.image);
 	var $caption = $('<div>').addClass('caption');
 
-	$thumbnail.append($img);
+	$link.append($img);
+	$thumbnail.append($link);
 	$item.append($thumbnail);
 
 	$('#album').append($item);
