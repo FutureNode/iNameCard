@@ -56,6 +56,7 @@ app.get('/', routes.index);
 app.get('/test', routes.test);
 app.post('/image', routes.addImage);
 app.post('/record', routes.addRecord);
+app.post('/video', routes.addVideo);
 // app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
