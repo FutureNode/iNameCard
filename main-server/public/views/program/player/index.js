@@ -5,12 +5,13 @@ var Track = function(id, type) {
 
 	self.id = id;
 	self.type = type;
+	self.ready = false;
 
 	switch(type) {
 	case 'music':
 	case 'audio':
 		self.$control = $('<audio>').attr({
-			'controls': true
+		//	'controls': true
 		});
 		self.$source = $('<source>');
 
@@ -22,7 +23,10 @@ var Track = function(id, type) {
 		break;
 
 	case 'image':
-		self.$control = self.$source = $('<img>');
+		self.$control = self.$source = $('<img>').hide();
+		self.$control.on('load', function() {
+			self.ready = true;
+		});
 		break;
 	}
 };
@@ -36,19 +40,45 @@ Track.prototype.load = function() {
 Track.prototype.play = function() {
 	var self = this;
 
-	self.$control[0].play();
+	switch(self.type) {
+	case 'music':
+	case 'audio':
+		self.$control[0].play();
+		break;
+
+	case 'image':
+		self.$control.fadeIn(2000);
+		break;
+	}
 };
 
 Track.prototype.pause = function() {
 	var self = this;
 
-	self.$control[0].pause();
+	switch(self.type) {
+	case 'music':
+	case 'audio':
+		self.$control[0].pause();
+	}
 };
 
 Track.prototype.on = function(e, callback) {
 	var self = this;
 
 	self.$control.on(e, callback);
+};
+
+Track.prototype.isReady = function() {
+	var self = this;
+
+	switch(self.type) {
+	case 'music':
+	case 'audio':
+		if (self.$control[0].readyState == 4)
+			self.ready = true;
+	};
+
+	return self.ready;
 };
 
 // Track Manager
@@ -75,7 +105,7 @@ TrackManager.prototype.play = function() {
 	var checkpoint = self.tracks.length;
 	for (var index in self.tracks) {
 
-		if (self.tracks[index].$control[0].readyState == 4)
+		if (self.tracks[index].isReady())
 			checkpoint--;
 	}
 
@@ -105,6 +135,12 @@ $.get('/program/' + programID, function(data) {
 
 	if (program.audio) {
 		var track = trackManager.addTrack(program.audio, 'audio');
+
+		$('#track_wareroom').append(track.$control);
+	}
+
+	if (program.image) {
+		var track = trackManager.addTrack(program.image, 'image');
 
 		$('#track_wareroom').append(track.$control);
 	}
