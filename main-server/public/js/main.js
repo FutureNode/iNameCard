@@ -329,7 +329,7 @@ $(function() {
                 console.log(resp);
             });
 
-            $('#musicSource').attr('src', 'http://211.78.254.238/track/527e46fa7763e7fd2d000007');
+            $('#musicSource').attr('src', 'http://211.78.254.238/track/' + $(this).data('id'));
             $('#musicPreview')[0].load();
             $('#musicPreview')[0].play();
         });
